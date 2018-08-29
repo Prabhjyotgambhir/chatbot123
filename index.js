@@ -3,9 +3,12 @@ const bodyParser = require('body-parser');
 const API_KEY = require('./api');
 const http = require('http');
 const server = express();
+const morgan = require('morgan');
 server.use(bodyParser.urlencoded({
     extended: true
 }));
+
+server.use(morgan('dev'));
 
 server.use(bodyParser.json());
 server.use(bodyParser.json());
