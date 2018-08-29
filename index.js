@@ -27,11 +27,23 @@ server.post('/movies', (req, res) => {
             let dataToSend = movieToSearch === 'The Godfather' ? `I don't have the required info on that. Here's some info on 'The Godfather' instead.\n` : '';
             dataToSend += `${movie.Title} is a ${movie.Actors} starer ${movie.Genre} movie, released in ${movie.Year}. It was directed by ${movie.Director}`;
 
-            return res.json({
-                speech: dataToSend,
-                displayText: dataToSend,
-                source: 'movies'
-            });
+            // return res.status(200).json({
+            //     speech: dataToSend,
+            //     displayText: dataToSend,
+            //     source: 'movies'
+            // });
+
+            return res.status(200).json({
+                fulfillmentMessages: [
+                    {
+                      "text": {
+                        "text": [
+                          dataToSend
+                        ]
+                      }
+                    }
+                  ]
+            })
         });
     }, (error) => {
         return res.json({
