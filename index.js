@@ -39,6 +39,10 @@ server.post('/movies', (req, res) => {
     });
 });
 
-server.listen(process.env.PORT, () => {
+server.get('/', (req,res) => {
+    res.send('Invalid endpoint');
+});
+
+server.listen(process.env.PORT || 2000, () => {
     console.log('Server running');
 });
